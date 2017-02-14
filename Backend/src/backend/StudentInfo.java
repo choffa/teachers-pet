@@ -1,6 +1,4 @@
-import java.lang.*;
-
-package Backend;
+package backend;
 
 class StudentInfo{
     byte rank;
