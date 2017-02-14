@@ -1,21 +1,22 @@
 package backend.threadsnshit;
 import backend.*;
 import backend.database.*;
+import backend.tests.ReadWriteTest;
+
 import java.util.ArrayList;
 
 public class WriterThread implements Runnable, ServerListener{
-	ArrayList<StudentInfo> infoStack;
 	InputDatabase idb;
-	
-	public void init(){
+	volatile ArrayList<StudentInfo> infoStack;
+	public void init(InputDatabase db){
+		idb = ReadWriteTest.db;
 		infoStack = new ArrayList<StudentInfo>();
-		idb = new InputDatabase();
 	}
 	
 	@Override
 	public void run() {
 		while(true){
-			while(infoStack.size()>0){
+			if(infoStack.size()>0){
 				write(infoStack.get(0));
 				infoStack.remove(0);
 			}
@@ -26,15 +27,17 @@ public class WriterThread implements Runnable, ServerListener{
 	public void addInfo(StudentInfo info) {
 		infoStack.add(info);
 	}
-
 	
 	
-	private void write(StudentInfo s){
-		if(s.getOldRank()!=0){
-			addNewRank(s);
-		} else {
-			updateOldRank(s);
-		}	
+	private synchronized void write(StudentInfo s){
+		if(s!= null){
+			System.out.printf("info passed: %d %d \n", s.getRank(), s.getOldRank());
+			if(s.getOldRank()==0){
+				addNewRank(s);
+			} else {
+				updateOldRank(s);
+			}
+		}
 	}
 	
 	private void addNewRank(StudentInfo s){

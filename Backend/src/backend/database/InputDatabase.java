@@ -1,8 +1,19 @@
 package backend.database;
 
+import java.util.ArrayList;
+
+import backend.StudentInfo;
+
 public class InputDatabase {
-	float gjennomsnitt = 0;
-	int antall = 0;
+	volatile float gjennomsnitt;
+	volatile int antall;
+	
+	
+	public InputDatabase(){
+		antall = 0;
+		gjennomsnitt = 0;
+	}
+
 	public float getGjennomsnitt() {
 		return gjennomsnitt;
 	}
