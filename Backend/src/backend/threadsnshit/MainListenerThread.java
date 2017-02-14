@@ -11,11 +11,8 @@ public class MainListenerThread implements Runnable {
 
 	ServerSocket socket = CustomServerSocket.getSocket();
 	Socket ClientSocket;
-	@Override
-	public void run() {
-		startService();
-	}
-	
+
+	//Hander connections til handler.
 	public void startService(){
 		while(true){
 			try {
@@ -28,5 +25,17 @@ public class MainListenerThread implements Runnable {
 			ClientSocket = null;
 			}
 		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public void run() {
+		startService();
 	}
 }

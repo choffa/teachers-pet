@@ -1,6 +1,6 @@
 package backend;
 
-class StudentInfo{
+public class StudentInfo{
     byte rank;
     byte oldRank;
     String fag;
