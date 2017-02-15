@@ -1,4 +1,7 @@
 package backend;
-interface ServerListener{
+
+import java.net.Socket;
+
+public interface ServerListener{
     public void addInfo(StudentInfo info);
 }
