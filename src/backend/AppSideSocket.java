@@ -7,13 +7,15 @@ import java.net.*;
 
 public class AppSideSocket implements ServerListener{
 
-	String hostname;
-	int port;
+	String hostname = "localhost";
+	Socket clientSocket;
+	BufferedReader in;
+	int port = 21;
 	
 	public AppSideSocket() throws UnknownHostException, IOException{
 		// TODO Make constructor
-		Socket echoSocket = new Socket(hostname, port);
-		BufferedReader in = new BufferedReader(new InputStreamReader(echoSocket.getInputStream()));
+		clientSocket = new Socket(hostname, port);
+		in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 		
 	}
 	
@@ -23,5 +25,23 @@ public class AppSideSocket implements ServerListener{
 		
 	}
 	
+	public void read(){
+		try {
+			while (true){
+				if (in.ready()){
+					System.out.println(in.readLine());
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Tried to read");
+	}
+	
+	public static void main(String[] args) throws UnknownHostException, IOException {
+		AppSideSocket a = new AppSideSocket();
+		a.read();
+	}
 
 }
