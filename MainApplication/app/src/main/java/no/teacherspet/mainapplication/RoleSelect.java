@@ -1,0 +1,50 @@
+package no.teacherspet.mainapplication;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+
+/**
+ * Created by magnus on 17.02.2017.
+ */
+
+public class RoleSelect extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_select_role);
+        Button StudBtn= (Button) findViewById(R.id.studBtn);
+        Button ProfBtn= (Button) findViewById(R.id.profBtn);
+        StudBtn.setOnClickListener(handler);
+        ProfBtn.setOnClickListener(handler);
+    }
+
+    public void selectProfessor(){
+        Intent intent= new Intent(RoleSelect.this,Professor.class);
+        startActivity(intent);
+    }
+    public void selectStudent(){
+        Intent intent= new Intent(RoleSelect.this,StudentRating.class);
+        startActivity(intent);
+    }
+    View.OnClickListener handler= new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch(v.getId()){
+                case R.id.studBtn:
+
+                    selectStudent();
+                    break;
+                case R.id.profBtn:
+
+                    selectProfessor();
+                    break;
+            }
+        }
+    };
+
+
+}
