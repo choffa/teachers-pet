@@ -1,40 +1,45 @@
 package backend.threadsnshit;
 import backend.*;
 import backend.database.*;
+import backend.tests.ReadWriteTest;
+
 import java.util.ArrayList;
 
 public class WriterThread implements Runnable, ServerListener{
-	ArrayList<StudentInfo> infoStack;
 	InputDatabase idb;
-	
-	public void init(){
+	volatile ArrayList<StudentInfo> infoStack;
+	public void init(InputDatabase db){
+		idb = ReadWriteTest.db;
 		infoStack = new ArrayList<StudentInfo>();
-		idb = new InputDatabase();
 	}
 	
 	@Override
 	public void run() {
 		while(true){
-			while(infoStack.size()>0){
-				write(infoStack.get(0));
-				infoStack.remove(0);
+			if(infoStack.size()>0){
+				if(infoStack.get(0)!=null){
+					write(infoStack.get(0));
+					infoStack.remove(0);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void addInfo(StudentInfo info) {
+	public synchronized void addInfo(StudentInfo info) {
 		infoStack.add(info);
+		
 	}
-
 	
 	
-	private void write(StudentInfo s){
-		if(s.getOldRank()!=0){
-			addNewRank(s);
-		} else {
-			updateOldRank(s);
-		}	
+	private synchronized void write(StudentInfo s){
+		if(s!= null){
+			if(s.getOldRank()==0){
+				addNewRank(s);
+			} else {
+				updateOldRank(s);
+			}
+		} 
 	}
 	
 	private void addNewRank(StudentInfo s){
@@ -49,7 +54,12 @@ public class WriterThread implements Runnable, ServerListener{
 		float oldSnitt = idb.getGjennomsnitt();
 		int oldAnt = idb.getAntall();
 		float newSnitt = (oldSnitt*oldAnt+s.getRank()-s.getOldRank())/oldAnt;
+		if(newSnitt<0){
+			idb.setGjennomsnitt(0);
+			return;
+		}
 		idb.setGjennomsnitt(newSnitt);
+		
 	}
 	
 }
