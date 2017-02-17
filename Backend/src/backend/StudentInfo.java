@@ -1,5 +1,7 @@
 package backend;
 
+
+//
 public class StudentInfo{
     byte rank;
     byte oldRank;
