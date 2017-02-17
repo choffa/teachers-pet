@@ -18,10 +18,11 @@ public class ReadWriteTest {
 		new Thread(wt).start();
 		while(true){
 			try{
-			Thread.sleep((long) (Math.random()*500));
-			s = new StudentInfo("ikkerelevant", (byte) Math.floor(Math.random()*6), (byte) 0);
-			wt.addInfo(new StudentInfo("ikkerelevant", (byte) Math.floor(Math.random()*6), (byte) 0));
-			}catch(Exception e){}
+			Thread.sleep((long) (Math.random()*200));
+			//s = new StudentInfo("ikkerelevant", (byte) Math.floor(Math.random()*6), (byte) 0);
+			wt.addInfo(new StudentInfo("ikkerelevant", (byte) Math.floor(Math.random()*6), (byte) (Math.round(Math.random())*Math.floor(Math.random()*6))));
+			//System.out.println("test kjører");
+			}catch(Exception e){e.printStackTrace();}
 		}
 	}
 

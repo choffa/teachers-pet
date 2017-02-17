@@ -17,27 +17,29 @@ public class WriterThread implements Runnable, ServerListener{
 	public void run() {
 		while(true){
 			if(infoStack.size()>0){
-				write(infoStack.get(0));
-				infoStack.remove(0);
+				if(infoStack.get(0)!=null){
+					write(infoStack.get(0));
+					infoStack.remove(0);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void addInfo(StudentInfo info) {
+	public synchronized void addInfo(StudentInfo info) {
 		infoStack.add(info);
+		
 	}
 	
 	
 	private synchronized void write(StudentInfo s){
 		if(s!= null){
-			System.out.printf("info passed: %d %d \n", s.getRank(), s.getOldRank());
 			if(s.getOldRank()==0){
 				addNewRank(s);
 			} else {
 				updateOldRank(s);
 			}
-		}
+		} 
 	}
 	
 	private void addNewRank(StudentInfo s){
@@ -52,7 +54,12 @@ public class WriterThread implements Runnable, ServerListener{
 		float oldSnitt = idb.getGjennomsnitt();
 		int oldAnt = idb.getAntall();
 		float newSnitt = (oldSnitt*oldAnt+s.getRank()-s.getOldRank())/oldAnt;
+		if(newSnitt<0){
+			idb.setGjennomsnitt(0);
+			return;
+		}
 		idb.setGjennomsnitt(newSnitt);
+		
 	}
 	
 }
