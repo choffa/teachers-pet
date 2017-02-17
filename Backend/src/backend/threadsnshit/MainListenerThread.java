@@ -11,13 +11,14 @@ public class MainListenerThread implements Runnable {
 
 	ServerSocket socket = CustomServerSocket.getSocket();
 	Socket ClientSocket;
+	WriterThread wt;
 
 	//Hander connections til handler.
 	public void startService(){
 		while(true){
 			try {
 				ClientSocket = socket.accept();
-				new Thread(new ConnectionHandeler(ClientSocket)).start();
+				new Thread(new ConnectionHandeler(ClientSocket, wt)).start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -36,6 +37,9 @@ public class MainListenerThread implements Runnable {
 	
 	@Override
 	public void run() {
+		wt = new WriterThread();
+		wt.init();
+		wt.run();
 		startService();
 	}
 }
