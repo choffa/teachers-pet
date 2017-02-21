@@ -17,10 +17,12 @@ public class ConnectionHandeler implements Runnable {
 	@Override
 	public void run() {
 		ObjectInputStream in;
+		StudentInfo input = new StudentInfo("", (byte)0, (byte)0); 		//Empty StudentInfo
 		try {
-			while (true){
+			while (input!=null){
+				System.out.println("Running with:" + socket.getInetAddress().getHostName());
 				in = new ObjectInputStream(socket.getInputStream());
-				StudentInfo input = (StudentInfo) in.readObject();
+				input = (StudentInfo) in.readObject();
 				System.out.println(input);
 				wt.addInfo(input);
 			}

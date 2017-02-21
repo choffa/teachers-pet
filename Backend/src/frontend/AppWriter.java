@@ -34,13 +34,13 @@ public class AppWriter implements Runnable {
 	
 	@Override
 	public void run() {
+		System.out.println(socket.getInetAddress().getHostAddress());
+		System.out.println(socket.getInetAddress().getHostName());
+		System.out.println(socket.isConnected());
 		try {
-			System.out.println(socket.getInetAddress().getHostAddress());
-			System.out.println(socket.getInetAddress().getHostName());
-			System.out.println(socket.isConnected());
 			out.writeObject(si);
-			out.flush();
-		} catch (IOException e) {
+			Thread.sleep(100);
+		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -16,7 +16,7 @@ public class MainListenerThread implements Runnable {
 
 	//Hander connections til handler.
 	public void startService(){
-		System.out.println("Service started");
+		System.out.println("Service started, wt:" + wt.toString());
 		while(true){
 			try {
 				ClientSocket = socket.accept();
@@ -40,7 +40,10 @@ public class MainListenerThread implements Runnable {
 	
 	@Override
 	public void run() {
-		new Thread(new WriterThread()).start();
+		wt = new WriterThread();
+		wt.init();
+		wt.run();
+		System.out.println("wt:" + wt.toString());
 		startService();
 	}
 	

@@ -15,14 +15,14 @@ public class WriterThread implements Runnable, ServerListener{
 	
 	@Override
 	public void run() {
-		while(true){
+		//while(true){
 			if(infoStack.size()>0){
 				if(infoStack.get(0)!=null){
 					write(infoStack.get(0));
 					infoStack.remove(0);
 				}
 			}
-		}
+		//}
 	}
 
 	@Override
