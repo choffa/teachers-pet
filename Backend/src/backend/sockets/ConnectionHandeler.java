@@ -18,9 +18,12 @@ public class ConnectionHandeler implements Runnable {
 	public void run() {
 		ObjectInputStream in;
 		try {
-			in = new ObjectInputStream(socket.getInputStream());
-			StudentInfo input = (StudentInfo) in.readObject();
-			wt.addInfo(input);
+			while (true){
+				in = new ObjectInputStream(socket.getInputStream());
+				StudentInfo input = (StudentInfo) in.readObject();
+				System.out.println(input);
+				wt.addInfo(input);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
