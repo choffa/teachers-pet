@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:id="@+id/profRelLayout">
 
     <TextView
         android:text="3.5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:textSize="150dp"
-        android:id="@+id/textView"
-        android:layout_weight="0.29"
+        android:textSize="150sp"
+        android:id="@+id/treKommaFem"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="146dp" />
@@ -27,15 +28,23 @@
         android:layout_marginLeft="13dp"
         android:layout_marginStart="13dp" />
 
+    <Button
+        android:text="Generate Random"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/treKommaFem"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="62dp"
+        android:id="@+id/genRandomNumBtn" />
+
     <CheckedTextView
         android:text="FagKode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="50dp"
+        android:textSize="50sp"
         android:id="@+id/checkedTextView"
         android:layout_marginTop="15dp"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>
