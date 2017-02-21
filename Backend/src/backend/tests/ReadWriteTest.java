@@ -8,6 +8,7 @@ import backend.threadsnshit.WriterThread;
 public class ReadWriteTest {
 	static StudentInfo s;
 	public volatile static InputDatabase  db;
+	
 	public static void main(String[] args) {
 		db = new InputDatabase();
 		WriterThread wt = new WriterThread();
@@ -25,5 +26,5 @@ public class ReadWriteTest {
 			}catch(Exception e){e.printStackTrace();}
 		}
 	}
-
 }
+

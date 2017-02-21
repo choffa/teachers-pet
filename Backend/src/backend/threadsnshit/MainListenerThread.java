@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import backend.database.InputDatabase;
 import backend.sockets.ConnectionHandeler;
 import backend.sockets.CustomServerSocket;
 
@@ -38,7 +39,7 @@ public class MainListenerThread implements Runnable {
 	@Override
 	public void run() {
 		wt = new WriterThread();
-		wt.init();
+		wt.init(new InputDatabase());
 		wt.run();
 		startService();
 	}
