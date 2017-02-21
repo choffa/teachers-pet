@@ -1,9 +1,13 @@
 package backend;
 
-
+import java.io.Serializable;
 //
-public class StudentInfo{
-    byte rank;
+public class StudentInfo implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	byte rank;
     byte oldRank;
     String fag;
 
