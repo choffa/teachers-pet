@@ -1,17 +1,19 @@
 package backend;
 
 public class StudentInfo{
-    int rank;
-    int oldRank;
+    byte rank;
+    byte oldRank;
     String fag;
+    int ID;
 
-    public StudentInfo(String fag, int rank, int oldRank){
+    public StudentInfo(String fag, byte rank, byte oldRank){
         this.fag = fag;
         this.rank = rank;
         this.oldRank = oldRank;
+        this.ID=0;
     }
 
-    public int getRank() {
+    public byte getRank() {
         return rank;
     }
 
@@ -19,7 +21,7 @@ public class StudentInfo{
         return fag;
     }
 
-    public void setRank(int rank) {
+    public void setRank(byte rank) {
         this.oldRank=this.rank;
         this.rank = rank;
     }
@@ -28,7 +30,13 @@ public class StudentInfo{
         this.fag = fag;
     }
 
-    public int getOldRank() {
+    public byte getOldRank() {
         return oldRank;
+    }
+
+    public int getID(){return ID;}
+
+    public void setID(int ID){
+        this.ID=ID;
     }
 }

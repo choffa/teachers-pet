@@ -10,7 +10,7 @@ import backend.StudentInfo;
 
 public class StudentRating extends AppCompatActivity {
 
-    int rating;
+    byte rating;
     int radioButtonID;
     RadioGroup tempo;
     TextView hello;
@@ -22,15 +22,19 @@ public class StudentRating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_rating);
         tempo = (RadioGroup) findViewById(R.id.tempoRadioGroup);
+        if(RoleSelect.getStud().getID()!=0){
+            tempo.check(RoleSelect.getStud().getID());
+        }
         hello = (TextView) findViewById(R.id.textView2);
         tempo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
             @Override
             public void onCheckedChanged(RadioGroup tempo, int checkedId) {
                 radioButtonID = tempo.getCheckedRadioButtonId();
+                RoleSelect.getStud().setID(tempo.getCheckedRadioButtonId());
                 View radioButton = tempo.findViewById(radioButtonID);
                 int rating = tempo.indexOfChild(radioButton) +1;
-                RoleSelect.changeStud(rating);
+                RoleSelect.changeStud((byte)rating);
                 hello.setText(Integer.toString(RoleSelect.getStud().getRank())+" , "+Integer.toString(RoleSelect.getStud().getOldRank()));
             }
         });

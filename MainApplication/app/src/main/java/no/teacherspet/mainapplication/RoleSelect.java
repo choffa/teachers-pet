@@ -31,7 +31,7 @@ public class RoleSelect extends AppCompatActivity {
     }
     public void selectStudent(){
         if(stud==null){
-            stud=new StudentInfo(null,0,0);
+            stud=new StudentInfo(null,(byte) 0,(byte) 0);
         }
         Intent intent= new Intent(RoleSelect.this,StudentRating.class);
         startActivity(intent);
@@ -54,7 +54,7 @@ public class RoleSelect extends AppCompatActivity {
     public static StudentInfo getStud(){
         return stud;
     }
-    public static void changeStud(int rating){
+    public static void changeStud(byte rating){
         stud.setRank(rating);
     }
 
