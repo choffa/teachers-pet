@@ -7,11 +7,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import backend.StudentInfo;
+
 /**
  * Created by magnus on 17.02.2017.
  */
 
 public class RoleSelect extends AppCompatActivity {
+    public static StudentInfo stud;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,9 @@ public class RoleSelect extends AppCompatActivity {
         startActivity(intent);
     }
     public void selectStudent(){
+        if(stud==null){
+            stud=new StudentInfo(null,(byte) 0,(byte) 0);
+        }
         Intent intent= new Intent(RoleSelect.this,StudentRating.class);
         startActivity(intent);
     }
@@ -45,6 +51,12 @@ public class RoleSelect extends AppCompatActivity {
             }
         }
     };
+    public static StudentInfo getStud(){
+        return stud;
+    }
+    public static void changeStud(byte rating){
+        stud.setRank(rating);
+    }
 
 
 }
