@@ -4,11 +4,13 @@ public class StudentInfo{
     byte rank;
     byte oldRank;
     String fag;
+    int ID;
 
     public StudentInfo(String fag, byte rank, byte oldRank){
         this.fag = fag;
         this.rank = rank;
         this.oldRank = oldRank;
+        this.ID=0;
     }
 
     public byte getRank() {
@@ -20,6 +22,7 @@ public class StudentInfo{
     }
 
     public void setRank(byte rank) {
+        this.oldRank=this.rank;
         this.rank = rank;
     }
 
@@ -31,7 +34,9 @@ public class StudentInfo{
         return oldRank;
     }
 
-    public void setOldRank(byte oldRank) {
-        this.oldRank = oldRank;
+    public int getID(){return ID;}
+
+    public void setID(int ID){
+        this.ID=ID;
     }
 }
