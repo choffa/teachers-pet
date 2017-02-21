@@ -6,13 +6,15 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import backend.StudentInfo;
+
 public class StudentRating extends AppCompatActivity {
 
     int rating;
     int radioButtonID;
-    static final String CURRENT_RESULT="result";
     RadioGroup tempo;
     TextView hello;
+    StudentInfo stud=RoleSelect.getStud();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,18 +22,6 @@ public class StudentRating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_rating);
         tempo = (RadioGroup) findViewById(R.id.tempoRadioGroup);
-        if(savedInstanceState!=null){
-            rating=savedInstanceState.getInt(CURRENT_RESULT);
-            if(rating>0){
-                tempo.check(radioButtonID);
-            }
-            else{
-                rating=0;
-            }
-        }
-        else{
-            rating=0;
-        }
         hello = (TextView) findViewById(R.id.textView2);
         tempo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
 
@@ -40,13 +30,9 @@ public class StudentRating extends AppCompatActivity {
                 radioButtonID = tempo.getCheckedRadioButtonId();
                 View radioButton = tempo.findViewById(radioButtonID);
                 int rating = tempo.indexOfChild(radioButton) +1;
-                hello.setText(Integer.toString(rating));
+                RoleSelect.changeStud(rating);
+                hello.setText(Integer.toString(RoleSelect.getStud().getRank())+" , "+Integer.toString(RoleSelect.getStud().getOldRank()));
             }
         });
     }
-    public void onSaveInstanceState(Bundle savedInstanceState){
-        savedInstanceState.putInt(CURRENT_RESULT, this.rating);
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
 }
