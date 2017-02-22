@@ -1,9 +1,11 @@
 package backend.sockets;
 
+
 import java.io.*;
 import java.net.Socket;
 import backend.threadsnshit.WriterThread;
 import backend.StudentInfo;
+
 
 public class ConnectionHandeler implements Runnable {
 	
@@ -16,6 +18,7 @@ public class ConnectionHandeler implements Runnable {
 	}
 	@Override
 	public void run() {
+
 		ObjectInputStream in;
 		StudentInfo input = new StudentInfo("", (byte)0, (byte)0); 		//Empty StudentInfo
 		try {
@@ -33,5 +36,6 @@ public class ConnectionHandeler implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 }

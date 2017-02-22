@@ -20,7 +20,9 @@ public class MainListenerThread implements Runnable {
 		while(true){
 			try {
 				ClientSocket = socket.accept();
+
 				System.out.println("Accepted:" + ClientSocket.toString());
+
 				new Thread(new ConnectionHandeler(ClientSocket, wt)).start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -43,7 +45,9 @@ public class MainListenerThread implements Runnable {
 		wt = new WriterThread();
 		wt.init();
 		wt.run();
+
 		System.out.println("wt:" + wt.toString());
+
 		startService();
 	}
 	

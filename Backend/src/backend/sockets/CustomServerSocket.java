@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public interface CustomServerSocket {
+
 	final int port = 21;
 	public static ServerSocket getSocket() {
 		try {
@@ -13,5 +14,6 @@ public interface CustomServerSocket {
 			e.printStackTrace();
 		}
 		return null;
+
 	}
 }
