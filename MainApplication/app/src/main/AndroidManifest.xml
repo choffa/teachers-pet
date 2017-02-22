@@ -12,7 +12,7 @@
         >
         <activity android:name=".StudentRating">
         </activity>
-        <activity android:name=".Professor">
+        <activity android:name=".ProfessorLive">
         </activity>
         <activity android:name=".RoleSelect"
             android:label="@string/startup">

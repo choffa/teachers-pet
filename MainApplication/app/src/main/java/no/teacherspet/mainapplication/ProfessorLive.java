@@ -16,7 +16,7 @@ import android.widget.TextView;
  */
 
 
-public class Professor extends AppCompatActivity {
+public class ProfessorLive extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +83,7 @@ public class Professor extends AppCompatActivity {
         layout.setBackgroundColor(Color.parseColor(translateColor(average)));
         actionBar.setBackgroundDrawable(new ColorDrawable(darker(Color.parseColor(translateColor(average)), (float) 0.8)));
         text = (TextView) findViewById(R.id.treKommaFem);
-        int textNum = (int) (average*10);
-        text.setText(Integer.toString(textNum));
+        text.setText(String.format("%.1f",average-3));
     }
 
 }
