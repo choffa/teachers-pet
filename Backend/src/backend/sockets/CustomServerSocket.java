@@ -4,9 +4,16 @@ import java.io.IOException;
 import java.net.ServerSocket;
 
 public interface CustomServerSocket {
-	private int port = 21;
-	private ServerSocket ss = new ServerSocket(port);
+
+	final int port = 21;
 	public static ServerSocket getSocket() {
-		return ss;
+		try {
+			return new ServerSocket(port);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 }

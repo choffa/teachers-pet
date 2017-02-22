@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import backend.StudentInfo;
 
+
+//Databaseobjekt for tjenesten. Vil ligge på serversiden av backend
 public class InputDatabase {
 	volatile float gjennomsnitt;
 	volatile int antall;
