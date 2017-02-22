@@ -26,7 +26,7 @@ public class RoleSelect extends AppCompatActivity {
     }
 
     public void selectProfessor(){
-        Intent intent= new Intent(RoleSelect.this,Professor.class);
+        Intent intent= new Intent(RoleSelect.this,ProfessorLive.class);
         startActivity(intent);
     }
     public void selectStudent(){
