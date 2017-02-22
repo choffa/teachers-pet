@@ -75,7 +75,6 @@ public class Professor extends AppCompatActivity {
     }
 
     protected void update(float average){
-        System.out.println(Double.toString(average));
         RelativeLayout layout;
         TextView text;
         ActionBar actionBar;
