@@ -12,10 +12,12 @@
         >
         <activity android:name=".StudentRating">
         </activity>
+        <activity android:name=".LectureList">
+        </activity>
+
         <activity android:name=".Professor">
         </activity>
-        <activity android:name=".RoleSelect"
-            android:label="@string/startup">
+        <activity android:name=".RoleSelect" android:label="@string/startup">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
