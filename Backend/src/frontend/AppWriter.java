@@ -51,7 +51,7 @@ public class AppWriter implements Runnable {
 	}
 	
 	public static void main(String[] args) {
-		AppWriter aw = new AppWriter(new StudentInfo("Hello", (byte)1, (byte)2));
+		AppWriter aw = new AppWriter(new StudentInfo("Hello", (byte) Math.floor(Math.random()*6), (byte) (0)));
 		aw.run();
 	}
 

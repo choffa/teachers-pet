@@ -2,6 +2,7 @@ package backend.tests;
 
 import backend.StudentInfo;
 import backend.database.InputDatabase;
+import backend.threadsnshit.MainListenerThread;
 import backend.threadsnshit.ReaderThread;
 import backend.threadsnshit.WriterThread;
 
@@ -11,20 +12,27 @@ public class ReadWriteTest {
 	
 	public static void main(String[] args) {
 		db = new InputDatabase();
-		WriterThread wt = new WriterThread();
+		MainListenerThread mlt = new MainListenerThread();
+		mlt.init(db);
+		new Thread(mlt).start();
+		System.out.println("mlt started");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ReaderThread rt = new ReaderThread();
-		wt.init(db);
 		rt.init(db);
 		new Thread(rt).start();
-		new Thread(wt).start();
-		while(true){
+		/*while(true){
 			try{
 			Thread.sleep((long) (Math.random()*200));
 			//s = new StudentInfo("ikkerelevant", (byte) Math.floor(Math.random()*6), (byte) 0);
 			wt.addInfo(new StudentInfo("ikkerelevant", (byte) Math.floor(Math.random()*6), (byte) (Math.round(Math.random())*Math.floor(Math.random()*6))));
 			//System.out.println("test kjører");
 			}catch(Exception e){e.printStackTrace();}
-		}
+		}*/
 	}
 
 }

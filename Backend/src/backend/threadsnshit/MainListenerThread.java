@@ -22,13 +22,13 @@ public class MainListenerThread implements Runnable {
 				ClientSocket = socket.accept();
 
 				System.out.println("Accepted:" + ClientSocket.toString());
-
+				
 				new Thread(new ConnectionHandeler(ClientSocket, wt)).start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally{
-			ClientSocket = null;
+			//ClientSocket = null;
 			}
 		}
 	}
@@ -36,17 +36,16 @@ public class MainListenerThread implements Runnable {
 	
 	
 	
-	
+	public void init(InputDatabase db){
+		wt = new WriterThread(db);
+	}
 	
 	
 	
 	@Override
 	public void run() {
-		wt = new WriterThread();
-		wt.init();
-		wt.run();
 
-		System.out.println("wt:" + wt.toString());
+		new Thread(wt).start();
 
 		startService();
 	}

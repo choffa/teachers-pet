@@ -5,6 +5,7 @@ import java.io.*;
 import java.net.Socket;
 import backend.threadsnshit.WriterThread;
 import backend.StudentInfo;
+import backend.TeacherInfo;
 
 
 public class ConnectionHandeler implements Runnable {
@@ -22,13 +23,13 @@ public class ConnectionHandeler implements Runnable {
 		ObjectInputStream in;
 		StudentInfo input = new StudentInfo("", (byte)0, (byte)0); 		//Empty StudentInfo
 		try {
-			while (input!=null){
+			//while (input!=null){
 				System.out.println("Running with:" + socket.getInetAddress().getHostName());
 				in = new ObjectInputStream(socket.getInputStream());
 				input = (StudentInfo) in.readObject();
 				System.out.println(input);
 				wt.addInfo(input);
-			}
+			//}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,5 +38,20 @@ public class ConnectionHandeler implements Runnable {
 			e.printStackTrace();
 		}
 
+	}
+	
+	
+	public void push(TeacherInfo t){
+		ObjectOutputStream out;
+		try {
+			out = new ObjectOutputStream(socket.getOutputStream());
+			out.writeObject(t);
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 }

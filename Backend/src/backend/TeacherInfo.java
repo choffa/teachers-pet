@@ -1,6 +1,6 @@
 package backend;
 
-class TeacherInfo{
+public class TeacherInfo{
     float snitt;
     int antall;
 
@@ -23,5 +23,10 @@ class TeacherInfo{
 
     public void setAntall(int antall) {
         this.antall = antall;
+    }
+    
+    public String toString(){
+    	String ret = "Mean is: "+snitt+" and number of people is:  "+antall;
+    	return ret;
     }
 }
