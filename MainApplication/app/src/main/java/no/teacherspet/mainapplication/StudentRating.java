@@ -1,7 +1,10 @@
 package no.teacherspet.mainapplication;
 
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,6 +24,8 @@ public class StudentRating extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_rating);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         tempo = (RadioGroup) findViewById(R.id.tempoRadioGroup);
         if(RoleSelect.getStud().getID()!=0){
             tempo.check(RoleSelect.getStud().getID());
@@ -38,5 +43,12 @@ public class StudentRating extends AppCompatActivity {
                 hello.setText(Integer.toString(RoleSelect.getStud().getRank())+" , "+Integer.toString(RoleSelect.getStud().getOldRank()));
             }
         });
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), RoleSelect.class);
+        startActivityForResult(myIntent, 0);
+        finish();
+        return true;
+
     }
 }
