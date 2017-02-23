@@ -11,7 +11,7 @@ public class AppWriter implements Runnable {
 	private Socket socket;
 	private StudentInfo si = null;
 	private ObjectOutputStream out;
-	private final String URL = "localhost";
+	private final String URL = "129.241.210.137";
 	private final int port = 21;
 	
 	public AppWriter(){
