@@ -14,8 +14,8 @@ public class AppReader implements Runnable {
 	private Socket socket;
 	private StudentInfo si = null;
 	private ObjectInputStream in;
-	private final String URL = "129.241.210.137";
-	private final int port = 21;
+	private final String URL = "doktor.pvv.org";
+	private final int port = 4279;
 	
 	public void run(){
 		while(true){

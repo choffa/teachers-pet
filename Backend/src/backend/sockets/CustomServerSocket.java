@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 
 public interface CustomServerSocket {
 
-	final int port = 21;
+	final int port = 4279;
 	public static ServerSocket getSocket() {
 		try {
 			return new ServerSocket(port);
