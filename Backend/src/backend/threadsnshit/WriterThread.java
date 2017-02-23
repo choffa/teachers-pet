@@ -8,21 +8,21 @@ import java.util.ArrayList;
 public class WriterThread implements Runnable, ServerListener{
 	InputDatabase idb;
 	volatile ArrayList<StudentInfo> infoStack;
-	public void init(InputDatabase db){
-		idb = ReadWriteTest.db;
+	public void init(){
+		idb = new InputDatabase();
 		infoStack = new ArrayList<StudentInfo>();
 	}
 	
 	@Override
 	public void run() {
-		while(true){
+		//while(true){
 			if(infoStack.size()>0){
 				if(infoStack.get(0)!=null){
 					write(infoStack.get(0));
 					infoStack.remove(0);
 				}
 			}
-		}
+		//}
 	}
 
 	@Override
