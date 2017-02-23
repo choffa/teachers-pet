@@ -1,11 +1,13 @@
 package no.teacherspet.mainapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -24,6 +26,9 @@ public class ProfessorLive extends AppCompatActivity {
         Button randNumBtn;
         randNumBtn = (Button) findViewById(R.id.genRandomNumBtn);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         randNumBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +38,15 @@ public class ProfessorLive extends AppCompatActivity {
                 update(avg);
             }
         });
+
+
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), RoleSelect.class);
+        startActivityForResult(myIntent, 0);
+        finish();
+        return true;
 
     }
 

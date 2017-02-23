@@ -15,7 +15,8 @@
         <activity android:name=".LectureList">
         </activity>
 
-        <activity android:name=".ProfessorLive">
+        <activity android:name=".ProfessorLive" android:screenOrientation="portrait">
+
         </activity>
         <activity android:name=".RoleSelect" android:label="@string/startup">
             <intent-filter>
