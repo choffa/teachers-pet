@@ -2,12 +2,14 @@ package no.teacherspet.mainapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import backend.StudentInfo;
+import frontend.AppWriter;
 
 /**
  * Created by magnus on 17.02.2017.
@@ -23,6 +25,8 @@ public class RoleSelect extends AppCompatActivity {
         Button ProfBtn= (Button) findViewById(R.id.profBtn);
         StudBtn.setOnClickListener(handler);
         ProfBtn.setOnClickListener(handler);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
     public void selectProfessor(){
@@ -55,7 +59,13 @@ public class RoleSelect extends AppCompatActivity {
         return stud;
     }
     public static void changeStud(byte rating){
+
         stud.setRank(rating);
+        try{
+            AppWriter aw = new AppWriter();
+            aw.setInfo(stud);
+            aw.run();
+        } catch (Exception e) {e.printStackTrace();}
     }
 
 
