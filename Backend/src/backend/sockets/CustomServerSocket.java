@@ -3,9 +3,9 @@ package backend.sockets;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-public interface CustomServerSocket {
+public class CustomServerSocket {
 
-	final int port = 4279;
+	final static int port = 4279;
 	public static ServerSocket getSocket() {
 		try {
 			return new ServerSocket(port);
@@ -13,6 +13,7 @@ public interface CustomServerSocket {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return null;
 
 	}

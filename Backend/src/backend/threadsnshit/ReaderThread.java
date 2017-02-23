@@ -26,13 +26,13 @@ public class ReaderThread implements Runnable{
 	
 	@Override
 	public void run() {
+		float oldSnitt = idb.getGjennomsnitt();
+		int oldAnt = idb.getAntall();
 		TeacherInfo t;
 		while(true){
-
-			
-			try{
-				Thread.sleep(10000);
-			} catch(Exception e){}
+			if(oldSnitt!=idb.getGjennomsnitt()||oldAnt!=idb.getAntall()){
+				oldSnitt=idb.getGjennomsnitt();
+				oldAnt=idb.getAntall();
 			t = new TeacherInfo(idb.getGjennomsnitt(), idb.getAntall());
 			for (ConnectionHandeler teacher:teachers){
 				if(teacher!=null){
@@ -41,6 +41,7 @@ public class ReaderThread implements Runnable{
 				}catch(Exception e) {}
 				}
 			Runtime.getRuntime().gc();
+			}
 			}
 		}
 	}

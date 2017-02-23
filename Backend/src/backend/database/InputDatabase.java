@@ -13,7 +13,7 @@ public class InputDatabase {
 	
 	public InputDatabase(){
 		antall = 0;
-		gjennomsnitt = 0;
+		gjennomsnitt = 3;
 	}
 
 	public float getGjennomsnitt() {
