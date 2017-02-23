@@ -39,6 +39,7 @@ public class AppWriter implements Runnable {
 		System.out.println(socket.isConnected());
 		try {
 			out.writeObject(si);
+			socket.close();
 			Thread.sleep(100);
 		} catch (IOException | InterruptedException e) {
 			// TODO Auto-generated catch block

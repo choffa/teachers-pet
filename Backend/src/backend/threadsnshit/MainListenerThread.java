@@ -13,6 +13,7 @@ public class MainListenerThread implements Runnable {
 	ServerSocket socket = CustomServerSocket.getSocket();
 	Socket ClientSocket;
 	WriterThread wt;
+	ReaderThread rt;
 
 	//Hander connections til handler.
 	public void startService(){
@@ -23,7 +24,7 @@ public class MainListenerThread implements Runnable {
 
 				System.out.println("Accepted:" + ClientSocket.toString());
 				
-				new Thread(new ConnectionHandeler(ClientSocket, wt)).start();
+				new Thread(new ConnectionHandeler(ClientSocket, wt, rt)).start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -36,8 +37,9 @@ public class MainListenerThread implements Runnable {
 	
 	
 	
-	public void init(InputDatabase db){
+	public void init(InputDatabase db, ReaderThread rt){
 		wt = new WriterThread(db);
+		this.rt=rt;
 	}
 	
 	

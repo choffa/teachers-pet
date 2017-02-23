@@ -5,6 +5,7 @@ import backend.database.InputDatabase;
 import backend.threadsnshit.MainListenerThread;
 import backend.threadsnshit.ReaderThread;
 import backend.threadsnshit.WriterThread;
+import frontend.AppReader;
 
 public class ReadWriteTest {
 	static StudentInfo s;
@@ -13,18 +14,13 @@ public class ReadWriteTest {
 	public static void main(String[] args) {
 		db = new InputDatabase();
 		MainListenerThread mlt = new MainListenerThread();
-		mlt.init(db);
-		new Thread(mlt).start();
-		System.out.println("mlt started");
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		ReaderThread rt = new ReaderThread();
 		rt.init(db);
+		mlt.init(db, rt);
+		new Thread(mlt).start();
+		System.out.println("mlt started");
 		new Thread(rt).start();
+		new Thread(new AppReader()).start();
 		/*while(true){
 			try{
 			Thread.sleep((long) (Math.random()*200));

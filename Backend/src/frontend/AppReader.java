@@ -9,7 +9,7 @@ import backend.TeacherInfo;
 
 import backend.StudentInfo;
 
-public class AppReader {
+public class AppReader implements Runnable {
 
 	private Socket socket;
 	private StudentInfo si = null;
@@ -17,26 +17,27 @@ public class AppReader {
 	private final String URL = "localhost";
 	private final int port = 21;
 	
-	public AppReader(){
+	public void run(){
+		while(true){
 		try {
+			if(socket==null){
 			socket = new Socket(URL, port);
-			socket.getKeepAlive();
+			}
 			in = new ObjectInputStream(socket.getInputStream());
 			System.out.println(in.readObject().toString());
+			socket.getKeepAlive();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+		} continue;
 		}
 	}
-	
-	public AppReader(StudentInfo si){
-		this();
-		this.si = si;
-	}
+
+
 }

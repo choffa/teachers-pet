@@ -36,7 +36,9 @@ public class ReaderThread implements Runnable{
 			t = new TeacherInfo(idb.getGjennomsnitt(), idb.getAntall());
 			for (ConnectionHandeler teacher:teachers){
 				if(teacher!=null){
-				teacher.push(t);
+				try{
+					teacher.push(t);
+				}catch(Exception e) {}
 				}
 			Runtime.getRuntime().gc();
 			}

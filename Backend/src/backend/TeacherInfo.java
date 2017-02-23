@@ -1,6 +1,8 @@
 package backend;
 
-public class TeacherInfo{
+import java.io.Serializable;
+
+public class TeacherInfo implements Serializable{
     float snitt;
     int antall;
 

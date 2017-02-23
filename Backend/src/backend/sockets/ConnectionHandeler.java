@@ -3,6 +3,8 @@ package backend.sockets;
 
 import java.io.*;
 import java.net.Socket;
+
+import backend.threadsnshit.ReaderThread;
 import backend.threadsnshit.WriterThread;
 import backend.StudentInfo;
 import backend.TeacherInfo;
@@ -13,9 +15,10 @@ public class ConnectionHandeler implements Runnable {
 	Socket socket;
 	WriterThread wt;
 	
-	public ConnectionHandeler(Socket socket, WriterThread wt){
+	public ConnectionHandeler(Socket socket, WriterThread wt, ReaderThread rt){
 		this.socket = socket;
 		this.wt = wt;
+		rt.listen(this);
 	}
 	@Override
 	public void run() {
@@ -26,9 +29,11 @@ public class ConnectionHandeler implements Runnable {
 			//while (input!=null){
 				System.out.println("Running with:" + socket.getInetAddress().getHostName());
 				in = new ObjectInputStream(socket.getInputStream());
+				if(in!=null){
 				input = (StudentInfo) in.readObject();
 				System.out.println(input);
 				wt.addInfo(input);
+				}
 			//}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -41,16 +46,13 @@ public class ConnectionHandeler implements Runnable {
 	}
 	
 	
-	public void push(TeacherInfo t){
+	public void push(TeacherInfo t) throws IOException{
 		ObjectOutputStream out;
-		try {
+			if (socket!=null&&(!socket.isClosed())&&socket.isConnected()){
 			out = new ObjectOutputStream(socket.getOutputStream());
 			out.writeObject(t);
-			out.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//out.close();
+			}
 		
 		
 	}
