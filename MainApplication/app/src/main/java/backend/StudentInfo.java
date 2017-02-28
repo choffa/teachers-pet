@@ -27,6 +27,7 @@ public class StudentInfo implements Serializable{
     }
 
     public void setRank(byte rank) {
+
         setOldRank(this.rank);
         this.rank = rank;
     }
@@ -43,11 +44,13 @@ public class StudentInfo implements Serializable{
         this.oldRank = oldRank;
     }
 
+
 	public int getID() {
 		return id;
 	}
 
 	public void setID(int id) {
+
 		this.id = id;
 	}
 }
