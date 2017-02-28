@@ -1,16 +1,9 @@
 package backend;
 
-import java.io.Serializable;
-//
-public class StudentInfo implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	byte rank;
+public class StudentInfo{
+    byte rank;
     byte oldRank;
     String fag;
-    int id;
 
     public StudentInfo(String fag, byte rank, byte oldRank){
         this.fag = fag;
@@ -27,8 +20,6 @@ public class StudentInfo implements Serializable{
     }
 
     public void setRank(byte rank) {
-
-        setOldRank(this.rank);
         this.rank = rank;
     }
 
@@ -43,14 +34,4 @@ public class StudentInfo implements Serializable{
     public void setOldRank(byte oldRank) {
         this.oldRank = oldRank;
     }
-
-
-	public int getID() {
-		return id;
-	}
-
-	public void setID(int id) {
-
-		this.id = id;
-	}
 }

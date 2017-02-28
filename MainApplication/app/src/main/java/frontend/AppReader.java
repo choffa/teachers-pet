@@ -16,15 +16,21 @@ public class AppReader implements Runnable {
 	private ObjectInputStream in;
 	private final String URL = "doktor.pvv.org";
 	private final int port = 4279;
-	
+
+	public TeacherInfo ti;
+
 	public void run(){
-		while(true){
+		ti = new TeacherInfo(0,0);
+		//while(true){
+
 		try {
 			if(socket==null){
 			socket = new Socket(URL, port);
 			}
 			in = new ObjectInputStream(socket.getInputStream());
-			System.out.println(in.readObject().toString());
+
+			ti = (TeacherInfo) in.readObject();
+
 			socket.getKeepAlive();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
@@ -35,7 +41,9 @@ public class AppReader implements Runnable {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-		} continue;
+
+		//} continue;
+
 		}
 	}
 

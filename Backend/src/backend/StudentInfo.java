@@ -1,5 +1,6 @@
 package backend;
 
+
 import java.io.Serializable;
 //
 public class StudentInfo implements Serializable{
@@ -11,6 +12,7 @@ public class StudentInfo implements Serializable{
     byte oldRank;
     String fag;
     int id;
+
 
     public StudentInfo(String fag, byte rank, byte oldRank){
         this.fag = fag;
@@ -42,6 +44,7 @@ public class StudentInfo implements Serializable{
         this.oldRank = oldRank;
     }
 
+
 	public int getId() {
 		return id;
 	}
@@ -49,4 +52,3 @@ public class StudentInfo implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
-}
