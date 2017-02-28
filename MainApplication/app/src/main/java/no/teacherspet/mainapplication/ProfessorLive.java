@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import frontend.AppReader;
+
 /**
  * Created by magnus on 17.02.2017.
  */
@@ -23,19 +25,23 @@ public class ProfessorLive extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.professor_layout);
-        Button randNumBtn;
-        randNumBtn = (Button) findViewById(R.id.genRandomNumBtn);
+        Button start;
+        start = (Button) findViewById(R.id.genRandomNumBtn);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        randNumBtn.setOnClickListener(new View.OnClickListener() {
+        AppReader ar = new AppReader();
+        start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float avg = (float) (Math.random()*40)+10;
-                avg = (float) Math.floor(avg);
-                avg = avg/10;
-                update(avg);
+                //float avg = (float) (Math.random()*40)+10;
+                //avg = (float) Math.floor(avg);
+                //avg = avg/10;
+                //update(avg);
+                //while(hasWindowFocus()){
+                    ar.run();
+                    update(ar.ti.getSnitt());
+                //}
             }
         });
 
@@ -89,6 +95,10 @@ public class ProfessorLive extends AppCompatActivity {
     }
 
     protected void update(float average){
+        System.out.println(average);
+        if(average<1||average>5){
+            average= (float) 3.0;
+        }
         RelativeLayout layout;
         TextView text;
         ActionBar actionBar;
