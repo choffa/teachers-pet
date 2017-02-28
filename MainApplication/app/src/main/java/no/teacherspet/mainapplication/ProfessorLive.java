@@ -31,14 +31,13 @@ public class ProfessorLive extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         AppReader ar = new AppReader();
-        System.out.println("Is past run method");
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float avg = (float) (Math.random()*40)+10;
-                avg = (float) Math.floor(avg);
-                avg = avg/10;
-                update(avg);
+                //float avg = (float) (Math.random()*40)+10;
+                //avg = (float) Math.floor(avg);
+                //avg = avg/10;
+                //update(avg);
                 //while(hasWindowFocus()){
                     ar.run();
                     update(ar.ti.getSnitt());
@@ -96,8 +95,9 @@ public class ProfessorLive extends AppCompatActivity {
     }
 
     protected void update(float average){
+        System.out.println(average);
         if(average<1||average>5){
-            average=0;
+            average= (float) 3.0;
         }
         RelativeLayout layout;
         TextView text;
